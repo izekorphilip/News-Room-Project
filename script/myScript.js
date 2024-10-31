@@ -6,9 +6,8 @@ const searchButton = document.getElementById('search-button')
 async function fetchRandomNews(){
     try{
         const apiUrl = 'https://newsapi.org/v2/everything?q=apple&from=2024-10-30&to=2024-10-30&sortBy=popularity&apiKey=c9162d5b8c9045c48977cc13710496c7'
-        const response = await fetch(apiUrl)
-        const data = await response.json()
-        
+        const response = await fetch(apiUrl);
+        const data = await response.json();
         return data.articles;
     }catch(error){
         console.error("Error fetching random news", error)
@@ -41,43 +40,40 @@ async function fetchNewsQuery(query){
     } 
 }
 
-function displayBlogs(articles){
+function displayBlogs(articles) {
     blogContainer.innerHTML = "";
     articles.forEach(article => {
-        const blogCard = document.createElement("div")
-        blogCard.classList.add("blog-card")
-        const img = document.createElement("img")
-        img.src = article.urlToImage
-        img.alt = article.title
-        const title = document.createElement("h2")
-        const truncatedTitle = article.title.length > 30 ?
-            article.title.slice(0, 30) + "...." : 
-            article.title;
+        const blogCard = document.createElement("div");
+        blogCard.classList.add("blog-card");
+        
+        const img = document.createElement("img");
+        img.src = article.urlToImage; // Corrected property name
+        img.alt = article.title;
+        
+        const title = document.createElement("h2");
+        const truncatedTitle = article.title.length > 30 ? article.title.slice(0, 30) + "...." : article.title;
         title.textContent = truncatedTitle;
+        
         const description = document.createElement("p");
         description.textContent = article.description;
-            
-
 
         blogCard.appendChild(img);
         blogCard.appendChild(title);
         blogCard.appendChild(description);
-        
-        blogCard.addEventListener("click", () =>{
-            window.open(article.url, "blank");
-        })
-        blogContainer.appendChild(blogCard);
 
+        blogCard.addEventListener("click", () => {
+            window.open(article.url, "_blank");
+        });
+
+        blogContainer.appendChild(blogCard);
     });
 }
 
-
-(async () =>{
-    try{
+(async () => {
+    try {
         const articles = await fetchRandomNews();
         displayBlogs(articles);
-    }catch(error){
-        console.error("Error fetching random news", error)
+    } catch (error) {
+        console.error("Error fetching random news", error);
     }
-
 })();
