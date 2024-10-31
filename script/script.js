@@ -14,7 +14,7 @@ const generateUI =(articles) => {
         card.classList.add("news-card");
         card.innerHTML = `<div 
         class="news-image-container">
-        <img scr="${item.urlToImage || "./newspaper.jpg"}
+        <img scr="${item.urlToImage}
         "alt=""/>
         </div>
         <div class="news-content">
