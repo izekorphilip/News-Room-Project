@@ -17,7 +17,7 @@ async function fetchRandomNews(){
 }
 
 
-searchButton.addEventListener("click",async () =>{
+searchButton.addEventListener("click", async () =>{
     const query = searchField.value.trim();
     if(query !== ""){
         try{ 
@@ -31,8 +31,7 @@ searchButton.addEventListener("click",async () =>{
 
 async function fetchNewsQuery(query){
     try{
-        const apiUrl = `https://newsapi.org/v2/everything?q=${query}&pageSize=10&apiKey=${apiKey}`
-        const response = await fetch(apiUrl)
+        const apiUrl ='https://newsapi.org/v2/everything?q=tesla&from=2024-09-30&sortBy=publishedAt&apiKey=af9427b158db4c92b336098ff97bf902'
         const data = await response.json()
         return data.articles;
     }catch(error){
