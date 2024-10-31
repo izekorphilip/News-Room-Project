@@ -1,11 +1,11 @@
-const apiKey = "af9427b158db4c92b336098ff97bf902"
+const apiKey = "c9162d5b8c9045c48977cc13710496c7"
 const blogContainer = document.getElementById('block-container');
 const searchField = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button')
 
 async function fetchRandomNews(){
     try{
-        const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&pageSize=20&apiKey=${apiKey}`
+        const apiUrl = 'https://newsapi.org/v2/everything?q=apple&from=2024-10-30&to=2024-10-30&sortBy=popularity&apiKey=c9162d5b8c9045c48977cc13710496c7'
         const response = await fetch(apiUrl)
         const data = await response.json()
         
@@ -17,7 +17,7 @@ async function fetchRandomNews(){
 }
 
 
-searchButton.addEventListener("click", async () =>{
+searchButton.addEventListener("click",async () =>{
     const query = searchField.value.trim();
     if(query !== ""){
         try{ 
@@ -31,7 +31,8 @@ searchButton.addEventListener("click", async () =>{
 
 async function fetchNewsQuery(query){
     try{
-        const apiUrl ='https://newsapi.org/v2/everything?q=tesla&from=2024-09-30&sortBy=publishedAt&apiKey=af9427b158db4c92b336098ff97bf902'
+        const apiUrl = `https://newsapi.org/v2/everything?q=${query}&pageSize=10&apiKey=${apiKey}`
+        const response = await fetch(apiUrl)
         const data = await response.json()
         return data.articles;
     }catch(error){
@@ -42,7 +43,7 @@ async function fetchNewsQuery(query){
 
 function displayBlogs(articles){
     blogContainer.innerHTML = "";
-        articles.forEach(article => {
+    articles.forEach(article => {
         const blogCard = document.createElement("div")
         blogCard.classList.add("blog-card")
         const img = document.createElement("img")
