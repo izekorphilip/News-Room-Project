@@ -43,7 +43,7 @@ async function fetchNewsQuery(query){
 
 function displayBlogs(articles){
     blogContainer.innerHTML = "";
-    articles.forEach(article => {
+        articles.forEach(article => {
         const blogCard = document.createElement("div")
         blogCard.classList.add("blog-card")
         const img = document.createElement("img")
